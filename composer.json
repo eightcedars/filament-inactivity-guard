@@ -1,0 +1,71 @@
+{
+    "name": "eightcedars/filament-inactivity-guard",
+    "description": "Filament idle/inactive session guard",
+    "keywords": [
+        "eightcedars",
+        "laravel",
+        "filament-inactivity-guard"
+    ],
+    "homepage": "https://github.com/eightcedars/filament-inactivity-guard",
+    "support": {
+        "issues": "https://github.com/eightcedars/filament-inactivity-guard/issues",
+        "source": "https://github.com/eightcedars/filament-inactivity-guard"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emmanuel Nelson",
+            "email": "opensource@eightcedars.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "filament/filament": "^3.0",
+        "spatie/laravel-package-tools": "^1.15.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^7.9",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.1",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EightCedars\\FilamentInactivityGuard\\": "src/",
+            "EightCedars\\FilamentInactivityGuard\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EightCedars\\FilamentInactivityGuard\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EightCedars\\FilamentInactivityGuard\\FilamentInactivityGuardServiceProvider"
+            ],
+            "aliases": {
+                "FilamentInactivityGuard": "EightCedars\\FilamentInactivityGuard\\Facades\\FilamentInactivityGuard"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
