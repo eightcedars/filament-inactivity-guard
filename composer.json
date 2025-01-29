@@ -4,7 +4,9 @@
     "keywords": [
         "eightcedars",
         "laravel",
-        "filament-inactivity-guard"
+        "filament inactivity guard",
+        "filament idle session",
+        "filament auto logout"
     ],
     "homepage": "https://github.com/eightcedars/filament-inactivity-guard",
     "support": {
@@ -22,6 +24,7 @@
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
+        "livewire/livewire": "^3.5",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -34,8 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "EightCedars\\FilamentInactivityGuard\\": "src/",
-            "EightCedars\\FilamentInactivityGuard\\Database\\Factories\\": "database/factories/"
+            "EightCedars\\FilamentInactivityGuard\\": "src/"
         }
     },
     "autoload-dev": {
@@ -60,10 +62,7 @@
         "laravel": {
             "providers": [
                 "EightCedars\\FilamentInactivityGuard\\FilamentInactivityGuardServiceProvider"
-            ],
-            "aliases": {
-                "FilamentInactivityGuard": "EightCedars\\FilamentInactivityGuard\\Facades\\FilamentInactivityGuard"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

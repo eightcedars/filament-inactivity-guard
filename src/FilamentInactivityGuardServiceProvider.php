@@ -2,19 +2,16 @@
 
 namespace EightCedars\FilamentInactivityGuard;
 
+use EightCedars\FilamentInactivityGuard\Livewire\SessionGuard;
+use EightCedars\FilamentInactivityGuard\Testing\TestsFilamentInactivityGuard;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
-use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use EightCedars\FilamentInactivityGuard\Commands\FilamentInactivityGuardCommand;
-use EightCedars\FilamentInactivityGuard\Testing\TestsFilamentInactivityGuard;
 
 class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
 {
@@ -30,7 +27,6 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name(static::$name)
-            ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
@@ -43,10 +39,6 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
 
         if (file_exists($package->basePath("/../config/{$configFileName}.php"))) {
             $package->hasConfigFile();
-        }
-
-        if (file_exists($package->basePath('/../database/migrations'))) {
-            $package->hasMigrations($this->getMigrations());
         }
 
         if (file_exists($package->basePath('/../resources/lang'))) {
@@ -73,17 +65,7 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
             $this->getAssetPackageName()
         );
 
-        // Icon Registration
-        FilamentIcon::register($this->getIcons());
-
-        // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-inactivity-guard/{$file->getFilename()}"),
-                ], 'filament-inactivity-guard-stubs');
-            }
-        }
+        Livewire::component('filament-inactivity-guard::session-guard', SessionGuard::class);
 
         // Testing
         Testable::mixin(new TestsFilamentInactivityGuard);
@@ -100,9 +82,7 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('filament-inactivity-guard', __DIR__ . '/../resources/dist/components/filament-inactivity-guard.js'),
-            Css::make('filament-inactivity-guard-styles', __DIR__ . '/../resources/dist/filament-inactivity-guard.css'),
-            Js::make('filament-inactivity-guard-scripts', __DIR__ . '/../resources/dist/filament-inactivity-guard.js'),
+            AlpineComponent::make('filament-inactivity-guard', __DIR__ . '/../resources/dist/filament-inactivity-guard.js'),
         ];
     }
 
@@ -112,16 +92,7 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentInactivityGuardCommand::class,
         ];
-    }
-
-    /**
-     * @return array<string>
-     */
-    protected function getIcons(): array
-    {
-        return [];
     }
 
     /**
@@ -146,7 +117,6 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-inactivity-guard_table',
         ];
     }
 }

@@ -7,7 +7,8 @@
 
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Guard your Filament dashboard from inactive sessions. Log users out after a 
+predefined period of inactivity.
 
 ## Installation
 
@@ -17,20 +18,7 @@ You can install the package via composer:
 composer require eightcedars/filament-inactivity-guard
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-inactivity-guard-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-inactivity-guard-config"
-```
-
-Optionally, you can publish the views using
 
 ```bash
 php artisan vendor:publish --tag="filament-inactivity-guard-views"
@@ -40,14 +28,53 @@ This is the contents of the published config file:
 
 ```php
 return [
+     /**
+     * Determine if the plugin is enabled
+     */
+    'enabled' => true,
+
+    /**
+     * How long to wait before an idle session is considered inactive.
+     * This value must be in seconds
+     */
+    'inactivity_timeout' => Carbon::SECONDS_PER_MINUTE * 14,
+
+    /**
+     * How long to show an inactive session notice before logging the user out.
+     * This value must be in seconds
+     *
+     * Set this to null or 0 to disable the notice and log out immediately a user's session becomes inactive
+     */
+    'notice_timeout' => 60,
+
+    /**
+     * This package watches for a list of browser events to determine if a user is still active.
+     * You may customise as desired.
+     *
+     * Ensure that the list is not empty
+     */
+    'interaction_events' => ['mousemove', 'keydown', 'click', 'scroll'],
 ];
 ```
 
+Optionally, you can publish the translation files using
+
+```bash
+php artisan vendor:publish --tag="filament-inactivity-guard-translations"
+```
+
+
 ## Usage
 
+Add the plugin class to your panel ServiceProvider
+
 ```php
-$filamentInactivityGuard = new EightCedars\FilamentInactivityGuard();
-echo $filamentInactivityGuard->echoPhrase('Hello, EightCedars!');
+use EightCedars\FilamentInactivityGuard\FilamentInactivityGuardPlugin;
+
+$panel
+    ...
+    ->plugin(FilamentInactivityGuardPlugin::make())
+    ...
 ```
 
 ## Testing
@@ -70,7 +97,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Emmanuel Nelson](https://github.com/eightcedars)
+- [EightCedars](https://github.com/eightcedars)
+- [Emmanuel Nelson](https://github.com/eyounelson)
 - [All Contributors](../../contributors)
 
 ## License
