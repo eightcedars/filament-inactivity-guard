@@ -21,7 +21,7 @@ composer require eightcedars/filament-inactivity-guard
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="filament-inactivity-guard-views"
+php artisan vendor:publish --tag="filament-inactivity-guard-config"
 ```
 
 This is the contents of the published config file:
@@ -61,6 +61,12 @@ Optionally, you can publish the translation files using
 
 ```bash
 php artisan vendor:publish --tag="filament-inactivity-guard-translations"
+
+```
+You can also publish the view files using
+
+```bash
+php artisan vendor:publish --tag="filament-inactivity-guard-views"
 ```
 
 
