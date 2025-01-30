@@ -2,6 +2,7 @@
 
 namespace EightCedars\FilamentInactivityGuard;
 
+use EightCedars\FilamentInactivityGuard\Concerns\HasFluentConfiguration;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\View\PanelsRenderHook;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\Blade;
 
 class FilamentInactivityGuardPlugin implements Plugin
 {
+    use HasFluentConfiguration;
+
     public function getId(): string
     {
         return 'eightcedars/filament-inactivity-guard';
@@ -16,10 +19,12 @@ class FilamentInactivityGuardPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->renderHook(
-            PanelsRenderHook::BODY_END,
-            fn () => Blade::render("@livewire('filament-inactivity-guard::session-guard')")
-        );
+        if (config('filament-inactivity-guard.enabled')) {
+            $panel->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn () => Blade::render("@livewire('filament-inactivity-guard::session-guard')")
+            );
+        }
     }
 
     public function boot(Panel $panel): void

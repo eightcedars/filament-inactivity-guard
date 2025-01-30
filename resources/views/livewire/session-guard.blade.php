@@ -1,12 +1,4 @@
-@php
-$inactivityTimeout = config('filament-inactivity-guard.inactivity_timeout', 30) * 1000;
-$noticeTimeout = config('filament-inactivity-guard.notice_timeout', 15) * 1000;
-$interactionEvents = json_encode(config('filament-inactivity-guard.interaction_events'));
-$enabled = config('filament-inactivity-guard.enabled');
-@endphp
-
 <div>
-@if($enabled && auth(filament()->getAuthGuard())->check())
     <x-filament::modal
         id="inactivityModal"
         width="lg"
@@ -28,7 +20,7 @@ $enabled = config('filament-inactivity-guard.enabled');
                 <div
                     style="opacity: 0.8; cursor: not-allowed;"
                     x-data="{timeout:null}"
-                    x-on:start-logout-countdown.window="timeout={{ $noticeTimeout/1000 }}; interval = setInterval(() => timeout > 0 ? timeout=timeout-1 : clearInterval(interval), 1000)"
+                    x-on:start-logout-countdown.window="timeout={{ $notice_timeout/1000 }}; interval = setInterval(() => timeout > 0 ? timeout=timeout-1 : clearInterval(interval), 1000)"
                 >
                     @lang('filament-inactivity-guard::inactivity-guard.modal.logout')
                     <span x-text="`${timeout}s`"></span>
@@ -42,8 +34,7 @@ $enabled = config('filament-inactivity-guard.enabled');
         x-ignore
         ax-load
         ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-inactivity-guard', 'eightcedars/filament-inactivity-guard') }}"
-        x-data="inactivityGuard($wire, {{ $interactionEvents }}, '{{ $inactivityTimeout }}', '{{ $noticeTimeout }}')">
+        x-data="inactivityGuard($wire, {{ $interaction_events }}, '{{ $inactivity_timeout }}', '{{ $notice_timeout }}')">
     </div>
-@endif
 </div>
 

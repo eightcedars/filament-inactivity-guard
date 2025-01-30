@@ -6,7 +6,6 @@ export default function inactivityGuard(livewire, interactionEvents, inactivityT
         init() {
             this.resetInactivityTimer();
 
-            // Listen for user interactions
             interactionEvents.forEach(event => {
                 window.addEventListener(event, () => this.resetInactivityTimer());
             });
@@ -24,13 +23,13 @@ export default function inactivityGuard(livewire, interactionEvents, inactivityT
         },
 
         showInactivityModal() {
-            this.$dispatch('open-modal', { id: 'inactivityModal' });
-
             if (!this.logoutTimeout < 1) {
                 livewire.$call('logout');
 
                 return;
             }
+
+            this.$dispatch('open-modal', { id: 'inactivityModal' });
 
             this.$dispatch('start-logout-countdown');
 

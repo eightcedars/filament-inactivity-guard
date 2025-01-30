@@ -83,6 +83,25 @@ $panel
     ...
 ```
 
+You may also configure the plugin behaviour in your service provider
+instead of publishing and editing the config file:
+
+```php
+use EightCedars\FilamentInactivityGuard\FilamentInactivityGuardPlugin;use Illuminate\Support\Carbon;$panel
+    ...
+    ->plugin(
+        FilamentInactivityGuardPlugin::make()
+            ->inactiveAfter(5*Carbon::SECONDS_PER_MINUTE)
+            ->showNoticeFor(1* Carbon::SECONDS_PER_MINUTE)
+            // Or set to null to logout immediately after inactivity
+            ->showNoticeFor(null)
+            
+            ->enabled(!app()->isLocal())
+            ->keepActiveOn(['change', 'select', 'mousemove'], mergeWithDefaults: true),
+    )
+    ...
+```
+
 ## Testing
 
 ```bash
