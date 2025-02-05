@@ -1,9 +1,10 @@
 {
     "name": "eightcedars/filament-inactivity-guard",
-    "description": "Filament idle/inactive session guard",
+    "description": "Gracefully auto-logout users from idle/inactive Filament sessions",
     "keywords": [
         "eightcedars",
         "laravel",
+        "filamentphp",
         "filament inactivity guard",
         "filament idle session",
         "filament auto logout"
@@ -24,7 +25,7 @@
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "livewire/livewire": "^3.5",
+        "livewire/livewire": "^3.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {

@@ -102,6 +102,10 @@ use EightCedars\FilamentInactivityGuard\FilamentInactivityGuardPlugin;use Illumi
     ...
 ```
 
+## Screenshots:
+![](https://raw.githubusercontent.com/eightcedars/filament-inactivity-guard/main/screenshots/inactivity-notice.png)
+![](https://raw.githubusercontent.com/eightcedars/filament-inactivity-guard/main/screenshots/loggedout-notice.png)
+
 ## Testing
 
 ```bash
