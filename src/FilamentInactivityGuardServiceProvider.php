@@ -91,8 +91,7 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
      */
     protected function getCommands(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -109,14 +108,5 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
     protected function getScriptData(): array
     {
         return [];
-    }
-
-    /**
-     * @return array<string>
-     */
-    protected function getMigrations(): array
-    {
-        return [
-        ];
     }
 }
