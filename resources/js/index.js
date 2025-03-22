@@ -23,7 +23,7 @@ export default function inactivityGuard(livewire, interactionEvents, inactivityT
         },
 
         showInactivityModal() {
-            if (!this.logoutTimeout < 1) {
+            if (logoutTimeout < 1) {
                 livewire.$call('logout');
 
                 return;
