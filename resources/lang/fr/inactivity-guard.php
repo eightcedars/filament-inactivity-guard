@@ -7,5 +7,5 @@ return [
         'logout' => 'Déconnexion dans',
         'resume_session' => 'Rester sur la page',
     ],
-    'session_expired' => 'Votre session a expiré en raison d'une inactivité. Veuillez vous reconnecter.',
+    'session_expired' => 'Votre session a expiré en raison d\'une inactivité. Veuillez vous reconnecter.',
 ];
