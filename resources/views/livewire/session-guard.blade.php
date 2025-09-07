@@ -1,7 +1,7 @@
 <div>
     <x-filament::modal
         id="inactivityModal"
-        width="lg"
+        width="xl"
         :close-button="false"
         :close-by-clicking-away="false"
     >
@@ -32,9 +32,9 @@
     <div
         style="height: 0"
         x-ignore
-        ax-load
-        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-inactivity-guard', 'eightcedars/filament-inactivity-guard') }}"
-        x-data="inactivityGuard($wire, {{ $interaction_events }}, '{{ $inactivity_timeout }}', '{{ $notice_timeout }}')">
+        x-load
+        x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-inactivity-guard', 'eightcedars/filament-inactivity-guard') }}"
+        x-data="inactivityGuard({{ $interaction_events }}, '{{ $inactivity_timeout }}', '{{ $notice_timeout }}')">
     </div>
 </div>
 

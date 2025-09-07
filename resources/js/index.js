@@ -1,4 +1,4 @@
-export default function inactivityGuard(livewire, interactionEvents, inactivityTimeout, logoutTimeout) {
+export default function inactivityGuard(interactionEvents, inactivityTimeout, logoutTimeout) {
     return {
         inactivityTimer: null,
         logoutTimeout: null,
@@ -24,7 +24,7 @@ export default function inactivityGuard(livewire, interactionEvents, inactivityT
 
         showInactivityModal() {
             if (logoutTimeout < 1) {
-                livewire.$call('logout');
+                this.$wire.$call('logout');
 
                 return;
             }
@@ -34,7 +34,7 @@ export default function inactivityGuard(livewire, interactionEvents, inactivityT
             this.$dispatch('start-logout-countdown');
 
             this.logoutTimeout = setTimeout(() => {
-                livewire.$call('logout');
+                this.$wire.$call('logout');
             }, logoutTimeout);
         },
 
