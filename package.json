@@ -6,6 +6,6 @@
         "build": "node bin/build.js"
     },
     "devDependencies": {
-        "esbuild": "^0.17.19"
+        "esbuild": "^0.25.0"
     }
 }
