@@ -6,10 +6,11 @@ use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use EightCedars\FilamentInactivityGuard\FilamentInactivityGuardServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
+use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
-use Filament\PanelServiceProvider;
+
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
@@ -32,11 +33,11 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            FilamentServiceProvider::class,
             ActionsServiceProvider::class,
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
             BladeIconsServiceProvider::class,
-            PanelServiceProvider::class,
             FormsServiceProvider::class,
             InfolistsServiceProvider::class,
             LivewireServiceProvider::class,
@@ -45,6 +46,7 @@ class TestCase extends Orchestra
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
             FilamentInactivityGuardServiceProvider::class,
+            TestPanelProvider::class,
         ];
     }
 
