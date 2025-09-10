@@ -32,11 +32,11 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            FilamentServiceProvider::class,
             ActionsServiceProvider::class,
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
             BladeIconsServiceProvider::class,
-            FilamentServiceProvider::class,
             FormsServiceProvider::class,
             InfolistsServiceProvider::class,
             LivewireServiceProvider::class,
@@ -45,6 +45,7 @@ class TestCase extends Orchestra
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
             FilamentInactivityGuardServiceProvider::class,
+            TestPanelProvider::class,
         ];
     }
 
