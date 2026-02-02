@@ -65,7 +65,7 @@ class FilamentInactivityGuardServiceProvider extends PackageServiceProvider
             $this->getAssetPackageName()
         );
 
-        Livewire::component('filament-inactivity-guard::session-guard', SessionGuard::class);
+        Livewire::component('filament-inactivity-guard.session-guard', SessionGuard::class);
 
         // Testing
         Testable::mixin(new TestsFilamentInactivityGuard);
