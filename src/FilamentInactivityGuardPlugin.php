@@ -22,7 +22,7 @@ class FilamentInactivityGuardPlugin implements Plugin
         if (config('filament-inactivity-guard.enabled')) {
             $panel->renderHook(
                 PanelsRenderHook::BODY_END,
-                fn () => Blade::render("@livewire('filament-inactivity-guard::session-guard')")
+                fn () => Blade::render("@livewire('filament-inactivity-guard.session-guard')")
             );
         }
     }
