@@ -12,7 +12,7 @@ return [
      * How long to wait before an idle session is considered inactive.
      * This value must be in seconds
      */
-    'inactivity_timeout' => Carbon::SECONDS_PER_MINUTE * env('INACTIVITY_TIMEOUT_IN_MINUTES', 14),
+    'inactivity_timeout' => Carbon::SECONDS_PER_MINUTE * env('INACTIVITY_TIMEOUT_IN_MINUTES', 15),
 
     /**
      * How long to show an inactive session notice before logging the user out.
