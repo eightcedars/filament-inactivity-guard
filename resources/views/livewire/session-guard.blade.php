@@ -22,8 +22,10 @@
                     x-data="{timeout:null}"
                     x-on:start-logout-countdown.window="timeout={{ $notice_timeout/1000 }}; interval = setInterval(() => timeout > 0 ? timeout=timeout-1 : clearInterval(interval), 1000)"
                 >
-                    @lang('filament-inactivity-guard::inactivity-guard.modal.logout')
-                    <span x-text="`${timeout}s`"></span>
+                    <span
+                        x-data="{ template: @js(trans_choice('filament-inactivity-guard::inactivity-guard.modal.logout', 2, ['seconds' => ':seconds'])) }"
+                        x-text="template.replace(':seconds', timeout)"
+                    ></span>
                 </div>
             </x-filament::button>
         </x-slot>
