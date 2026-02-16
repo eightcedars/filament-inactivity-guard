@@ -5,7 +5,6 @@ namespace EightCedars\FilamentInactivityGuard\Livewire;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class SessionGuard extends Component

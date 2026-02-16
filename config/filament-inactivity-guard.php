@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Carbon;
-
 return [
     /**
      * Determine if the plugin is enabled
