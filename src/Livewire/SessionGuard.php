@@ -19,7 +19,7 @@ class SessionGuard extends Component
         }
 
         return view('filament-inactivity-guard::livewire.session-guard', [
-            'inactivity_timeout' => config('filament-inactivity-guard.inactivity_timeout', 15 * Carbon::SECONDS_PER_MINUTE) * static::MILLISECONDS_PER_SECOND,
+            'inactivity_timeout' => config('filament-inactivity-guard.inactivity_timeout') * static::MILLISECONDS_PER_SECOND,
             'notice_timeout' => config('filament-inactivity-guard.notice_timeout') * static::MILLISECONDS_PER_SECOND,
             'interaction_events' => json_encode(config('filament-inactivity-guard.interaction_events')),
         ]);
