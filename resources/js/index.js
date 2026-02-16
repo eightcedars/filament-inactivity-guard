@@ -7,7 +7,13 @@ export default function inactivityGuard(interactionEvents, inactivityTimeout, lo
             this.resetInactivityTimer();
 
             interactionEvents.forEach(event => {
-                window.addEventListener(event, () => this.resetInactivityTimer());
+                window.addEventListener(event, () => {
+                    // don't reset timer when warning/notice has been shown
+                    // let the user explicitly cancel the pending logout
+                    if (!this.logoutTimeout) {
+                        this.resetInactivityTimer()
+                    }
+                });
             });
 
             window.addEventListener('resumeActivities', () => this.resumeActivities());
@@ -16,6 +22,8 @@ export default function inactivityGuard(interactionEvents, inactivityTimeout, lo
         resetInactivityTimer() {
             clearTimeout(this.inactivityTimer);
             clearTimeout(this.logoutTimeout);
+
+            this.logoutTimeout = null;
 
             this.inactivityTimer = setTimeout(() => {
                 this.showInactivityModal();
