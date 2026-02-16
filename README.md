@@ -37,7 +37,7 @@ return [
      * How long to wait before an idle session is considered inactive.
      * This value must be in seconds
      */
-    'inactivity_timeout' => Carbon::SECONDS_PER_MINUTE * env('INACTIVITY_TIMEOUT_IN_MINUTES', 15),
+    'inactivity_timeout' => Carbon::SECONDS_PER_MINUTE * env('FILAMENT_INACTIVITY_TIMEOUT_MINUTES', 15),
 
     /**
      * How long to show an inactive session notice before logging the user out.
@@ -45,7 +45,7 @@ return [
      *
      * Set this to null or 0 to disable the notice and log out immediately a user's session becomes inactive
      */
-    'notice_timeout' => env('NOTICE_TIMEOUT_IN_SECONDS', 60),
+    'notice_timeout' => env('FILAMENT_INACTIVITY_NOTICE_TIMEOUT_SECONDS', 60),
 
     /**
      * This package watches for a list of browser events to determine if a user is still active.
@@ -104,17 +104,17 @@ use EightCedars\FilamentInactivityGuard\FilamentInactivityGuardPlugin;use Illumi
 
 You can configure the timeout settings using the following environment variables:
 
-| Variable                        | Default | Description |
-|---------------------------------|---|---|
-| `INACTIVITY_TIMEOUT_IN_MINUTES` | `15` minutes | Inactivity period before the logout warning dialog is displayed. |
-| `NOTICE_TIMEOUT_IN_SECONDS`     | `60` seconds | Duration the logout warning is displayed before the user is automatically logged out. |
+| Variable                                  | Default | Description |
+|-------------------------------------------|---|---|
+| `FILAMENT_INACTIVITY_TIMEOUT_MINUTES`     | `15` minutes | Inactivity period before the logout warning dialog is displayed. |
+| `FILAMENT_INACTIVITY_NOTICE_TIMEOUT_SECONDS` | `60` seconds | Duration the logout warning is displayed before the user is automatically logged out. |
 
 ## Screenshots
 ![](https://raw.githubusercontent.com/eightcedars/filament-inactivity-guard/main/screenshots/inactivity-notice.png)
 ![](https://raw.githubusercontent.com/eightcedars/filament-inactivity-guard/main/screenshots/loggedout-notice.png)
 
 ## Available Languages  
-Arabic (`ar`) · Bengali (`bn`) · Chinese (Simplified) (`zh_CN`) · Chinese (Traditional) (`zh_TW`) · Danish (`da`) · Dutch (`nl`) · English (`en`) · Farsi / Persian (`fa`) · Finnish (`fi`) · French (`fr`) · German (`de`) · Hebrew (`he`) · Hindi (`hi`) · Icelandic (`is`) · Indonesian (`id`) · Italian (`it`) · Japanese (`ja`) · Korean (`ko`) · Malay (`ms`) · Norwegian (`no`) · Polish (`pl`) · Portuguese (Brazil) (`pt_BR`) · Russian (`ru`) · Spanish (`es`) · Swedish (`sv`) · Thai (`th`) · Turkish (`tr`) · Ukrainian (`uk`) · Vietnamese (`vi`)
+🇸🇦 Arabic (`ar`) · 🇧🇩 Bengali (`bn`) · 🇨🇳 Chinese (Simplified) (`zh_CN`) · 🇹🇼 Chinese (Traditional) (`zh_TW`) · 🇩🇰 Danish (`da`) · 🇳🇱 Dutch (`nl`) · 🇬🇧 English (`en`) · 🇮🇷 Farsi / Persian (`fa`) · 🇫🇮 Finnish (`fi`) · 🇫🇷 French (`fr`) · 🇩🇪 German (`de`) · 🇮🇱 Hebrew (`he`) · 🇮🇳 Hindi (`hi`) · 🇮🇸 Icelandic (`is`) · 🇮🇩 Indonesian (`id`) · 🇮🇹 Italian (`it`) · 🇯🇵 Japanese (`ja`) · 🇰🇷 Korean (`ko`) · 🇲🇾 Malay (`ms`) · 🇳🇴 Norwegian (`no`) · 🇵🇱 Polish (`pl`) · 🇧🇷 Portuguese (Brazil) (`pt_BR`) · 🇷🇺 Russian (`ru`) · 🇪🇸 Spanish (`es`) · 🇸🇪 Swedish (`sv`) · 🇹🇭 Thai (`th`) · 🇹🇷 Turkish (`tr`) · 🇺🇦 Ukrainian (`uk`) · 🇻🇳 Vietnamese (`vi`)
 
 ## Testing
 
